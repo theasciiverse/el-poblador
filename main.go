@@ -126,6 +126,7 @@ func loadGameState(filename string) (*game.Game, error) {
 
 func printUsage() {
 	fmt.Println("Usage:")
+	fmt.Println("  el_poblador                (start screen: new game or continue a saved one)")
 	fmt.Println("  el_poblador new [options] <player1> <player2> <player3> [player4]")
 	fmt.Println("  el_poblador load <filename.gob>")
 	fmt.Println("  el_poblador serve")
@@ -147,8 +148,24 @@ func main() {
 	}
 
 	if len(args) < 1 {
+		// No command, as when a launcher starts it: the start screen.
+		choice, err := runSetup()
+		if err != nil {
+			fmt.Println("Error running program:", err)
+			os.Exit(1)
+		}
+		if choice == nil {
+			return
+		}
+		if choice.loadPath != "" {
+			args = []string{"load", choice.loadPath}
+		} else {
+			args = append([]string{"new"}, choice.names...)
+		}
+	}
+	if args[0] == "-help" || args[0] == "--help" || args[0] == "-h" || args[0] == "help" {
 		printUsage()
-		os.Exit(1)
+		return
 	}
 
 	command := args[0]

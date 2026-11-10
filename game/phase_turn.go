@@ -7,6 +7,7 @@ import (
 	"git.sr.ht/~vicho/el_poblador/board"
 	"math/rand/v2"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -154,7 +155,11 @@ func (p *phaseIdle) HelpText() string {
 }
 
 func saveGameState(g *Game) error {
-	filename := fmt.Sprintf("game_save_%s.gob", time.Now().Format("2006-01-02_15-04-05"))
+	dir := SaveDir()
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return fmt.Errorf("save folder: %w", err)
+	}
+	filename := filepath.Join(dir, fmt.Sprintf("game_save_%s.gob", time.Now().Format("2006-01-02_15-04-05")))
 	var buf bytes.Buffer
 	encoder := gob.NewEncoder(&buf)
 	if err := encoder.Encode(g); err != nil {
