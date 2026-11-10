@@ -1,3 +1,4 @@
+# El Poblador: release
 # Asciiverse release workflow (tag v* or run by hand with a tag)
 # Builds El Poblador for the Asciiverse catalog and as system packages.
 # Upstream (git.sr.ht/~vicho/el_poblador) builds on builds.sr.ht and has no
