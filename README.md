@@ -1,3 +1,14 @@
+> **Play it with Asciiverse.** With [av](https://asciiverse.sh), the Asciiverse
+> client:
+>
+> ```
+> av install el-poblador
+> av play el-poblador
+> ```
+>
+> It opens on a start screen: name three or four players, or continue a
+> saved game. The original README follows.
+
 # El Poblador - Settlers of Catan TUI
 
 [![builds.sr.ht status](https://builds.sr.ht/~vicho/el_poblador/commits/main/test.yml.svg)](https://builds.sr.ht/~vicho/el_poblador/commits/main/test.yml?)
